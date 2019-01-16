@@ -8,6 +8,11 @@
 
 
 def bubble_sort(in_list, front):
+    """
+    冒泡排序
+        :param in_list: 待排序数组成的列表
+        :param front: 排序方向，0为从小到大排序，1为从大到小排序
+    """
     out_list = list(in_list)
     for i in range(len(out_list) - 1):
         for j in range(0, len(out_list) - 1 - i):

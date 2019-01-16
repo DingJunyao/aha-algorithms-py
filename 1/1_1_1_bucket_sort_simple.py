@@ -10,7 +10,7 @@
 
 def bucket_sort_simple(in_list, front):
     """
-    桶排序
+    桶排序（简单）
         :param in_list: 待排序数组成的列表
         :param front: 排序方向，0为从小到大排序，1为从大到小排序
     """
