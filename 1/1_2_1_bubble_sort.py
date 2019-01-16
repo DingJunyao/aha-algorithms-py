@@ -18,12 +18,10 @@ def bubble_sort(in_list, front):
         for j in range(0, len(out_list) - 1 - i):
             if front == 1:
                 if out_list[j] < out_list[j + 1]:
-                    out_list[j], out_list[j +
-                                          1] = out_list[j + 1], out_list[j]
+                    out_list[j], out_list[j + 1] = out_list[j + 1], out_list[j]
             else:
                 if out_list[j] > out_list[j + 1]:
-                    out_list[j], out_list[j +
-                                          1] = out_list[j + 1], out_list[j]
+                    out_list[j], out_list[j + 1] = out_list[j + 1], out_list[j]
     return out_list
 
 
