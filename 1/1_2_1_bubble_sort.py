@@ -15,7 +15,7 @@ def bubble_sort(in_list, front):
     """
     out_list = list(in_list)
     for i in range(len(out_list) - 1):
-        for j in range(0, len(out_list) - 1 - i):
+        for j in range(len(out_list) - 1 - i):
             if front == 1:
                 if out_list[j] < out_list[j + 1]:
                     out_list[j], out_list[j + 1] = out_list[j + 1], out_list[j]
