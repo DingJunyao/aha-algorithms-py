@@ -11,7 +11,9 @@
 
 本代码使用对象进行实现，使用了2_1_2和2_2_1的相关代码。
 
-这里面有一个问题：当出牌后，如果能够从桌上拿牌，但手上已经打完牌，这个时候是判对方赢还是拿牌？从输出结果上看，原书上的处理方式是这时拿牌，游戏继续。本代码也如此处理。如果是前者，则获胜结果相反。
+这里面有一个问题：当一方出牌后，如果能够从桌上拿牌，但手上已经打完牌，这个时候是判对方赢还是拿牌？
+从输出结果上看，原书上的处理方式似乎是：拿牌，游戏继续。
+本代码也如此处理。如果是前者，则获胜结果相反。
 """
 
 
@@ -76,27 +78,42 @@ for i in [2, 4, 1, 2, 5, 6]:
     a.quin(i)
 for i in [3, 1, 3, 5, 6, 4]:
     b.quin(i)
+book = [0 for _ in range(10)]
 
 while True:
     # A出牌
     ao = table.stin(a.quout())
     # A拿牌
-    for i in range(table.top - 1):
-        if ao == table.data[i]:
-            while(table.top > i):
-                a.quin(table.stout())
-            break
+    if book[ao] > 0:
+        a.quin(table.stout())
+        while True:
+            ai = a.quin(table.stout())
+            book[ai] = book[ai] - 1
+            if ai == ao:
+                break
+    else:
+        book[ao] = 1
     if a.head == a.tail:
         print("B赢")
+        print("此时A手中的牌：%s" % a.data[a.head:a.tail])
+        print("此时B手中的牌：%s" % b.data[b.head:b.tail])
+        print("此时桌子上的牌：%s" % table.data[:table.top])
         break
     # B出牌
     bo = table.stin(b.quout())
     # B拿牌
-    for i in range(table.top - 1):
-        if bo == table.data[i]:
-            while(table.top > i):
-                b.quin(table.stout())
-            break
+    if book[bo] > 0:
+        b.quin(table.stout())
+        while True:
+            bi = b.quin(table.stout())
+            book[bi] = book[bi] - 1
+            if bi == bo:
+                break
+    else:
+        book[bo] = 1
     if b.head == b.tail:
         print("A赢")
+        print("此时A手中的牌：%s" % a.data[a.head:a.tail])
+        print("此时B手中的牌：%s" % b.data[b.head:b.tail])
+        print("此时桌子上的牌：%s" % table.data[:table.top])
         break
