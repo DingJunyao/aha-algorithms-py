@@ -25,49 +25,49 @@
 这里的坐标的格式是(行,列)，从0开始计数。
 """
 
-map = []
+game_map = []
 row = int(input("输入行数: "))
 print("输入地图，每输入完一行按回车键:")
 for i in range(row):
     rmap = input()
-    if map != []:
-        if len(rmap) == len(map[0]):
-            map.append(rmap)
+    if game_map != []:
+        if len(rmap) == len(game_map[0]):
+            game_map.append(rmap)
         else:
             raise Exception
     else:
-        map.append(rmap)
+        game_map.append(rmap)
 print("输入地图完成，正在计算...")
 max = 0
 p = None
 q = None
-for i, rmap in enumerate(map):
+for i, rmap in enumerate(game_map):
     for j, element in enumerate(rmap):
         if element != '.':
             continue
         sum = 0
         x = i
         y = j
-        while 0 <= x <= row - 1 and map[x][y] != '#':
-            if map[x][y] == 'G':
+        while 0 <= x <= row - 1 and game_map[x][y] != '#':
+            if game_map[x][y] == 'G':
                 sum = sum + 1
             x = x - 1
         x = i
         y = j
-        while 0 <= x <= row - 1 and map[x][y] != '#':
-            if map[x][y] == 'G':
+        while 0 <= x <= row - 1 and game_map[x][y] != '#':
+            if game_map[x][y] == 'G':
                 sum = sum + 1
             x = x + 1
         x = i
         y = j
-        while 0 <= y <= len(map[0]) and map[x][y] != '#':
-            if map[x][y] == 'G':
+        while 0 <= y <= len(game_map[0]) and game_map[x][y] != '#':
+            if game_map[x][y] == 'G':
                 sum = sum + 1
             y = y - 1
         x = i
         y = j
-        while 0 <= y <= len(map[0]) and map[x][y] != '#':
-            if map[x][y] == 'G':
+        while 0 <= y <= len(game_map[0]) and game_map[x][y] != '#':
+            if game_map[x][y] == 'G':
                 sum = sum + 1
             y = y + 1
         if sum > max:
